@@ -55,7 +55,6 @@ class Wallet(object):
 
         # Find the "pwd" column
         cols = cur.execute('PRAGMA table_info(%s);' % self.table).fetchall()
-        idx = max([i if col[1] == 'pwd' else -1 for i, col in enumerate(cols)])
 
         # Query the records
         if not pattern:
@@ -301,6 +300,10 @@ class Wallet(object):
 
 
     def __str__(self):
+        '''
+        To string
+        @returns {str}      the string format of the class
+        '''
         return 'Wallet<key="%s", target="%s">' % \
                (self.key, self.db + '.' + self.table)
     # def __str__(self)
