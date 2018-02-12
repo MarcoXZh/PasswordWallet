@@ -13,7 +13,8 @@ import sys
 import time
 from wallet import Wallet
 
-
+KEY_PATH = 'dist'
+KEY_FILE = 'key.log'
 RETRY = 3
 
 
@@ -219,7 +220,10 @@ def main():
 
     # Check keys
     key = None
-    key_file = 'dist/key.log'
+    if not os.path.exists(KEY_PATH):
+        os.makedirs(KEY_PATH)
+    # if not os.path.exists(KEY_PATH)
+    key_file = os.path.join(KEY_PATH, KEY_FILE)
     if os.path.exists(key_file):    # Get key from file
         f = open(key_file, 'r')
         key = f.read().strip()
